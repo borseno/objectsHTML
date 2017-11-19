@@ -27,41 +27,48 @@ var HR_director = {
 }
 var characters = {
 	"admin" : admin,
-	"user" : user
+	"user" : user,
+	"HR_director" : HR_director
 }
 function CharacterValuesGUI() {
 	let NamesButton = document.getElementById("CharacterInfo");
-	NamesButton.innerHTML = "<p id = 'lol'> <input type = 'text' id = 'GetCharacter'> </p>";
-	document.getElementById("lol").innerHTML += "<button id = 'GetCharacterButton' onclick = 'printCharacterValues()'>Получить данные о персонаже</button>";
+	// Вставляем input с id GetCharacter и кнопку с id GetCharacterButton, действие - получение данных о персонаже.
+	NamesButton.innerHTML = "<input type = 'text' id = 'GetCharacter'>";
+	NamesButton.innerHTML += "<button id = 'GetCharacterButton' onclick = 'printCharacterValues()'>Получить данные о персонаже</button>";
+	// При нажатии enter в поле ввода происходит тоже, что и при нажатии кнопки.
 	document.getElementById("GetCharacter").onkeypress = function () {
-	if (event.charCode === 13) {
-		printCharacterValues();
+		if (event.charCode === 13) {
+			printCharacterValues();
+		}
 	}
-}
 }
 
 function printCharacters() {
-	let Names = document.getElementById("Names");
-	Names.innerHTML += "<br>"
-	for (var char in characters) {
-		Names.innerHTML += "<br>" + "<b>" + char + "</b>";
+	let Names = document.getElementById("Names"); 
+	Names.innerHTML += "<br>" 
+	for (var char in characters) { // перебор всех свойств обьекта characters
+		Names.innerHTML += "<br>" + "<b>" + char + "</b>"; // печатаем их
 	}
-	CharacterValuesGUI();
+	CharacterValuesGUI(); // добавляем поле ввода распечатки конкретного персонажа
 }
-function printCharacterValues() {
+
+function printCharacterValues() { // получение данных о персонаже
 	let GetCharacter = document.getElementById('GetCharacter');
-	let OurCharacter = GetCharacter.value;
-	if (characters[OurCharacter] == undefined) return -1;
-	var CharacterInfo = document.getElementById('CharacterInfo');
+	let Character = GetCharacter.value;
+	let CharacterInfo = document.getElementById('CharacterInfo');
+	
+	if (characters[Character] == undefined) return false; // не печатать если такового персонажа нет
     //document.getElementById('GetCharacter').value = " ";
-	for (var p in characters[OurCharacter]) {
-	CharacterInfo.innerHTML += "Значение " + p + " Персонажа " + "<b>" + OurCharacter + "</b>" + " : " + characters[OurCharacter][p] + "<br>"
-	}	
-	CharacterInfo.innerHTML += "<br><hr>"
-	document.getElementById("GetCharacter").onkeypress = function () {
-	if (event.charCode === 13) {
-		printCharacterValues();
+	CharacterInfo.innerHTML += "<br><br>"
+	for (var p in characters[Character]) {
+	CharacterInfo.innerHTML += "Значение " + p + " Персонажа " + "<b>" + Character + "</b>" + " : " + characters[Character][p] + "<br>" // Печать
 	}
-}
+	CharacterInfo.innerHTML += "<br><br><hr>"
+	// При нажатии enter в поле ввода происходит тоже, что и при нажатии кнопки.
+	document.getElementById("GetCharacter").onkeypress = function () {
+		if (event.charCode === 13) {
+			printCharacterValues();
+		}
+	}
 }
 
