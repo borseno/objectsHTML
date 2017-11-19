@@ -22,8 +22,9 @@ var HR_director = {
 	"Hair look": "Just nice",
 	"Behaviour": "Very good",
 	"Education": "Karazin University",
-	"Height": 160,
-	"Weight": 50
+	"Height": "~160",
+	"Weight": "~50",
+	"bool" : true
 }
 var characters = {
 	"admin" : admin,
@@ -33,8 +34,8 @@ var characters = {
 function CharacterValuesGUI() {
 	let NamesButton = document.getElementById("CharacterInfo");
 	// Вставляем input с id GetCharacter и кнопку с id GetCharacterButton, действие - получение данных о персонаже.
-	NamesButton.innerHTML = "<input type = 'text' id = 'GetCharacter'>";
-	NamesButton.innerHTML += "<button id = 'GetCharacterButton' onclick = 'printCharacterValues()'>Получить данные о персонаже</button>";
+	NamesButton.innerHTML = "<br><input type = 'text' id = 'GetCharacter'>";
+	NamesButton.innerHTML += "<button id = 'GetCharacterButton' onclick = 'printCharacterValues()'>Получить данные о персонаже</button><br>";
 	// При нажатии enter в поле ввода происходит тоже, что и при нажатии кнопки.
 	document.getElementById("GetCharacter").onkeypress = function () {
 		if (event.charCode === 13) {
@@ -59,11 +60,11 @@ function printCharacterValues() { // получение данных о перс
 	
 	if (characters[Character] == undefined) return false; // не печатать если такового персонажа нет
     //document.getElementById('GetCharacter').value = " ";
-	CharacterInfo.innerHTML += "<br><br>"
+	CharacterInfo.innerHTML += "<br>"
 	for (var p in characters[Character]) {
 	CharacterInfo.innerHTML += "Значение " + p + " Персонажа " + "<b>" + Character + "</b>" + " : " + characters[Character][p] + "<br>" // Печать
 	}
-	CharacterInfo.innerHTML += "<br><br><hr>"
+	CharacterInfo.innerHTML += "<br><hr>"
 	// При нажатии enter в поле ввода происходит тоже, что и при нажатии кнопки.
 	document.getElementById("GetCharacter").onkeypress = function () {
 		if (event.charCode === 13) {
